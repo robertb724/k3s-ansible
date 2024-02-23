@@ -4,3 +4,9 @@ grafana:
     ingressClassName: nginx
     hosts:
       - grafana.robertbatson.com
+
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: "longhorn"
+    size: 5Gi
