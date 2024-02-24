@@ -67,8 +67,6 @@ image:
       # -- Tag for the CSI liveness probe image. When unspecified, Longhorn uses the default value.
       tag: v2.11.0-arm64
 
-
-
 longhornUI:
   # -- Replica count for Longhorn UI.
   replicas: 1
