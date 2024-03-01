@@ -10,3 +10,13 @@ grafana:
     type: sts
     storageClassName: "longhorn"
     size: 5Gi
+
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Loki
+        type: loki
+        orgId: 1
+        url: http://loki-gateway.loki
