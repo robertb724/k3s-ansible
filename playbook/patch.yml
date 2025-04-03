@@ -1,0 +1,17 @@
+---
+- name: Configure weekly maintenance on different days for each k3s host
+  hosts: k3s_cluster
+  become: yes
+  vars:
+    weekdays: ["1", "2", "3", "4", "5"]  # Weekdays from Monday to Friday
+
+  tasks:
+    - name: Set up cron job for apt-get update and upgrade
+      cron:
+        name: "Weekly maintenance for {{ ansible_host }}"
+        minute: "0"
+        hour: "3"
+        weekday: "{{ weekdays[ansible_play_hosts_all.index(inventory_hostname) | int % weekdays | length] }}"
+        job: "/usr/bin/apt-get update && /usr/bin/apt-get upgrade -y && /usr/bin/apt-get autoremove -y"
+        user: "root"
+        cron_file: "apt_maintenance_{{ ansible_host }}"

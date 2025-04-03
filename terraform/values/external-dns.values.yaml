@@ -1,22 +1,13 @@
 provider:
-  name: google
+  name: cloudflare
 
 domainFilters: [robertbatson.com]
 
 txtOwnerId: homelab-k3s
 
-extraArgs:
-- --google-project=robertb724-personal
-
 env:
-  - name: GOOGLE_APPLICATION_CREDENTIALS
-    value: /etc/secrets/service-account/credentials.json
-
-extraVolumeMounts:
-  - name: google-service-account
-    mountPath: /etc/secrets/service-account/
-
-extraVolumes:
-  - name: google-service-account
-    secret:
-      secretName: gcp-sa-key
+- name: CF_API_TOKEN
+  valueFrom:
+    secretKeyRef:
+      name: cloudflare-api-key
+      key: apiKey

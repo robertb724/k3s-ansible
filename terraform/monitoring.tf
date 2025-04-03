@@ -9,4 +9,9 @@ resource "helm_release" "kube-prometheus-stack" {
     file("${path.module}/values/grafana.values.yaml"),
     file("${path.module}/values/prometheus.values.yaml")
   ]
+
+  depends_on = [
+    helm_release.longhorn
+  ]
+  
 }

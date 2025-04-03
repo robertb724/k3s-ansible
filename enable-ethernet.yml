@@ -14,5 +14,5 @@
         group: "root"
         mode: "0644"
     - name: Apply netplan configuration
-      ansible.builtin.command:
-        cmd: netplan apply
+      ansible.builtin.command:ubu
+        cmd: netplan apply 
