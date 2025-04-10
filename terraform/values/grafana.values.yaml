@@ -4,9 +4,12 @@ grafana:
     ingressClassName: nginx
     hosts:
       - grafana.robertbatson.com
-  service:
     annotations:
-      tailscale.com/expose: "true"
+      cert-manager.io/cluster-issuer: "cloudflare-letsencrypt-prod"
+    tls:
+    - secretName: grafana-tls
+      hosts:
+      - grafana.robertbatson.com
 
   persistence:
     enabled: true

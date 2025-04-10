@@ -12,3 +12,8 @@ ingress:
 
   # -- Hostname of the Layer 7 load balancer.
   host: longhorn.robertbatson.com
+  tls: true
+  tlsSecret: longhorn-ui-tls
+  annotations:
+    cert-manager.io/cluster-issuer: "cloudflare-letsencrypt-prod"
+ 
