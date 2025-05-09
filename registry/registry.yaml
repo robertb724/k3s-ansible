@@ -1,0 +1,10 @@
+# registries.yaml 
+mirrors:
+  us-east1-docker.pkg.dev:
+    endpoint:
+      - "https://us-east1-docker.pkg.dev"
+configs:
+  us-east1-docker.pkg.dev:
+    auth:
+      username: _json_key
+      password: 'redacted'

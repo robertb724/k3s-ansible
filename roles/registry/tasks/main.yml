@@ -1,0 +1,23 @@
+---
+
+- name: Ensure /etc/rancher/k3s directory exists
+  ansible.builtin.file:
+    path: /etc/rancher/k3s
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy registry credentials file to node
+  ansible.builtin.copy:
+    src: /home/robert/dev/k3s-ansible/registry/registry.yaml
+    dest: /etc/rancher/k3s/registries.yaml
+    owner: root
+    group: root
+    mode: '0644'
+
+# If you need to restart the k3s service on each node after copying the file, uncomment the following task
+# - name: Restart k3s service
+#   ansible.builtin.service:
+#     name: k3s
+#     state: restarted
