@@ -7,6 +7,14 @@
     line: '\1 cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory'
   notify: Reboot Pi
 
+- name: Disable UAS for ASMedia 174c:0193 USB-SATA adapter to prevent filesystem corruption
+  ansible.builtin.lineinfile:
+    path: /boot/firmware/cmdline.txt
+    backrefs: true
+    regexp: '^((?!.*\busb-storage.quirks=174c:0193:u\b).*)$'
+    line: '\1 usb-storage.quirks=174c:0193:u'
+  notify: Reboot Pi
+
 - name: Install Ubuntu Raspi Extra Packages
   ansible.builtin.apt:
     # Fixes issues in newer Ubuntu where VXLan isn't setup right.
